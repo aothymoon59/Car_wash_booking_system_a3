@@ -1,7 +1,4 @@
-## E-commerce management
-
-Live server link: https://e-commerce-management-a2.vercel.app
-Postman documentation: https://documenter.getpostman.com/view/29000250/2sA3e1BVaV
+## Car Wash Booking Management
 
 ### Step 1
 
