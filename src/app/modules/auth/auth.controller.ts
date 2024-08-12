@@ -3,7 +3,7 @@ import { AuthServices } from './auth.service';
 import sendResponse from '../../utils/sendResponse';
 import catchAsync from '../../utils/catchAsync';
 
-const createUser = catchAsync(async (req, res) => {
+const signUpUser = catchAsync(async (req, res) => {
   const result = await AuthServices.signUpUserIntoDB(req.body);
   // send response
   sendResponse(res, {
@@ -15,5 +15,5 @@ const createUser = catchAsync(async (req, res) => {
 });
 
 export const AuthControllers = {
-  createUser,
+  signUpUser,
 };
