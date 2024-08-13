@@ -9,7 +9,7 @@ const createCarService = catchAsync(async (req, res) => {
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: 'Service retrieved successfully',
+    message: 'Service created successfully',
     data: result,
   });
 });
