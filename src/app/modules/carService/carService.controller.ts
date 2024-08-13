@@ -52,9 +52,21 @@ const updateCarService = catchAsync(async (req, res) => {
   });
 });
 
+const deleteCarService = catchAsync(async (req, res) => {
+  const result = await CarServiceServices.deleteCarServiceFromDB(req.params.id);
+  // send response
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'Service deleted successfully',
+    data: result,
+  });
+});
+
 export const CarServiceControllers = {
   createCarService,
   getSingleCarService,
   getAllCarServices,
   updateCarService,
+  deleteCarService,
 };

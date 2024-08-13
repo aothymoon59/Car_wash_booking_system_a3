@@ -27,4 +27,6 @@ router.put(
   CarServiceControllers.updateCarService,
 );
 
+router.delete('/:id', auth('admin'), CarServiceControllers.deleteCarService);
+
 export const CarServiceRoutes = router;

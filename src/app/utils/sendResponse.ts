@@ -1,4 +1,5 @@
 import { Response } from 'express';
+import httpStatus from 'http-status';
 
 type TResponse<T> = {
   success: boolean;
@@ -15,13 +16,22 @@ type TResponse<T> = {
 
 const sendResponse = <T>(res: Response, data: TResponse<T>) => {
   const meta = data?.meta;
-  res.status(data?.statusCode).json({
-    success: data.success,
-    statusCode: data.statusCode,
-    message: data.message,
-    meta,
-    token: data?.token,
-    data: data?.data,
-  });
+  if (!data?.data || (Array.isArray(data?.data) && data?.data.length === 0)) {
+    res.status(httpStatus.NOT_FOUND).json({
+      success: false,
+      statusCode: 404,
+      message: 'No Data Found',
+      data: [],
+    });
+  } else {
+    res.status(data?.statusCode).json({
+      success: data.success,
+      statusCode: data.statusCode,
+      message: data.message,
+      meta,
+      token: data?.token,
+      data: data?.data,
+    });
+  }
 };
 export default sendResponse;

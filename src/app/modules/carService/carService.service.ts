@@ -7,19 +7,32 @@ const createCarServiceIntoDB = async (payload: TCarService) => {
 };
 
 const getSingleCarServiceFromDB = async (id: string) => {
-  const result = await CarService.findById(id);
+  const result = await CarService.findOne({ _id: id, isDeleted: false }).exec();
   return result;
 };
 
 const getAllCarServicesFromDB = async () => {
-  const result = await CarService.find();
+  const result = await CarService.find({ isDeleted: false });
   return result;
 };
 
 const updateCarServiceIntoDB = async (id: string, payload: TCarService) => {
+  const data = await CarService.findOne({ _id: id, isDeleted: false }).exec();
+  if (!data) {
+    return null;
+  }
   const result = await CarService.findByIdAndUpdate(id, payload, {
     new: true,
   });
+  return result;
+};
+
+const deleteCarServiceFromDB = async (id: string) => {
+  const result = CarService.findByIdAndUpdate(
+    id,
+    { isDeleted: true },
+    { new: true },
+  );
   return result;
 };
 
@@ -28,4 +41,5 @@ export const CarServiceServices = {
   getSingleCarServiceFromDB,
   getAllCarServicesFromDB,
   updateCarServiceIntoDB,
+  deleteCarServiceFromDB,
 };
