@@ -22,9 +22,9 @@ const signUpUserIntoDB = async (payload: TUser) => {
 };
 
 const loginUser = async (payload: TLoginUser) => {
-  const user = await User.findOne({ email: payload?.email })
-    .select('+password')
-    .select({ createdAt: 0, updatedAt: 0, __v: 0 });
+  const user = await User.findOne({ email: payload?.email }).select(
+    '+password',
+  );
   // checking if the user is exist
   if (!user) {
     throw new AppError(httpStatus.NOT_FOUND, 'This user is not found !');
