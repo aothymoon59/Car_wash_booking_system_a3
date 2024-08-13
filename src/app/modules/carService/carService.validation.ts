@@ -18,6 +18,17 @@ const createCarServiceValidationSchema = z.object({
   }),
 });
 
+const updateCarServiceValidationSchema = z.object({
+  body: z.object({
+    name: z.string().optional(),
+    description: z.string().optional(),
+    price: z.number().optional(),
+    duration: z.number().optional(),
+    isDeleted: z.boolean().default(false),
+  }),
+});
+
 export const carServiceValidations = {
   createCarServiceValidationSchema,
+  updateCarServiceValidationSchema,
 };

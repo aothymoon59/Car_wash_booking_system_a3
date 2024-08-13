@@ -20,4 +20,11 @@ router.get('/:id', CarServiceControllers.getSingleCarService);
 
 router.get('/', CarServiceControllers.getAllCarServices);
 
+router.put(
+  '/:id',
+  auth('admin'),
+  validateRequest(carServiceValidations.updateCarServiceValidationSchema),
+  CarServiceControllers.updateCarService,
+);
+
 export const CarServiceRoutes = router;
