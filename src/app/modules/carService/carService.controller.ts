@@ -14,6 +14,20 @@ const createCarService = catchAsync(async (req, res) => {
   });
 });
 
+const getSingleCarService = catchAsync(async (req, res) => {
+  const result = await CarServiceServices.getSingleCarServiceFromDB(
+    req.params.id,
+  );
+  // send response
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'Service retrieved successfully',
+    data: result,
+  });
+});
+
 export const CarServiceControllers = {
   createCarService,
+  getSingleCarService,
 };
