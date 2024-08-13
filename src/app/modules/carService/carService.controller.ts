@@ -38,8 +38,23 @@ const getAllCarServices = catchAsync(async (req, res) => {
   });
 });
 
+const updateCarService = catchAsync(async (req, res) => {
+  const result = await CarServiceServices.updateCarServiceIntoDB(
+    req.params.id,
+    req.body,
+  );
+  // send response
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'Service updated successfully',
+    data: result,
+  });
+});
+
 export const CarServiceControllers = {
   createCarService,
   getSingleCarService,
   getAllCarServices,
+  updateCarService,
 };
