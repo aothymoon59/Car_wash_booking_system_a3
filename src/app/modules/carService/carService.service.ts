@@ -16,8 +16,16 @@ const getAllCarServicesFromDB = async () => {
   return result;
 };
 
+const updateCarServiceIntoDB = async (id: string, payload: TCarService) => {
+  const result = await CarService.findByIdAndUpdate(id, payload, {
+    new: true,
+  });
+  return result;
+};
+
 export const CarServiceServices = {
   createCarServiceIntoDB,
   getSingleCarServiceFromDB,
   getAllCarServicesFromDB,
+  updateCarServiceIntoDB,
 };
