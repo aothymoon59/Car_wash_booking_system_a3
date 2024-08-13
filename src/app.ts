@@ -15,7 +15,7 @@ app.use('/api', router);
 const serverController = (req: Request, res: Response) => {
   res.status(200).json({
     success: true,
-    message: `Car Wash Management Server is running on port 🚀${config.port}🚀`,
+    message: `Car Wash Management Server is 🚀running🚀`,
   });
 };
 
