@@ -1,14 +1,5 @@
 import { z } from 'zod';
 
-// export type TUser = {
-//     name: string;
-//     email: string;
-//     password: string;
-//     phone: string;
-//     role: 'user' | 'admin';
-//     address: string;
-//   };
-
 const userSignUpValidationSchema = z.object({
   body: z.object({
     name: z.string({ required_error: 'name is required.' }),
@@ -20,6 +11,14 @@ const userSignUpValidationSchema = z.object({
   }),
 });
 
+const userLoginValidationSchema = z.object({
+  body: z.object({
+    email: z.string({ required_error: 'email is required.' }).email(),
+    password: z.string({ required_error: 'Password is required' }),
+  }),
+});
+
 export const userValidations = {
   userSignUpValidationSchema,
+  userLoginValidationSchema,
 };
