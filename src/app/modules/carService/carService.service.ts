@@ -6,6 +6,12 @@ const createCarServiceIntoDB = async (payload: TCarService) => {
   return result;
 };
 
+const getSingleCarServiceFromDB = async (id: string) => {
+  const result = await CarService.findById(id);
+  return result;
+};
+
 export const CarServiceServices = {
   createCarServiceIntoDB,
+  getSingleCarServiceFromDB,
 };
