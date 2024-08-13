@@ -16,4 +16,6 @@ router.post(
   CarServiceControllers.createCarService,
 );
 
+router.get('/:id', CarServiceControllers.getSingleCarService);
+
 export const CarServiceRoutes = router;
