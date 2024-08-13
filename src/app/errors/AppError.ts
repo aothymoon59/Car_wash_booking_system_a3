@@ -1,3 +1,4 @@
+//global app error
 class AppError extends Error {
   public statusCode: number;
 
