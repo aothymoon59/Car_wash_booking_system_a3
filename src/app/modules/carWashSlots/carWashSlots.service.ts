@@ -4,7 +4,7 @@
 import { TSlot } from './carWashSlots.interface';
 import { CarWashSlots } from './carWashSlots.model';
 
-const createSlots = async (payload: TSlot) => {
+const createSlotsIntoDB = async (payload: TSlot) => {
   const { service, date, startTime, endTime } = payload;
   const duration = 60; // Assuming service duration is 60 minutes
 
@@ -42,4 +42,4 @@ const createSlots = async (payload: TSlot) => {
   return createdSlots;
 };
 
-export default createSlots;
+export const carWashSlots = { createSlotsIntoDB };
