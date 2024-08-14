@@ -1,13 +1,5 @@
 import { z } from 'zod';
 
-/* {
-    "name": "Car Wash",
-    "description": "Professional car washing service",
-    "price": 50,
-    "duration": 60, // Duration in minutes
-    "isDeleted": false
-} */
-
 const createCarServiceValidationSchema = z.object({
   body: z.object({
     name: z.string({ required_error: 'name is required.' }),

@@ -1,6 +1,4 @@
-// import { Slot } from '../models/Slot.model'; // Adjust the import to your slot model
-// import { TSlotRequest } from '../interfaces/slot.interface'; // Adjust to your interface
-
+import { TQuery } from '../../interface/query.interface';
 import { TSlot } from './carWashSlots.interface';
 import { CarWashSlots } from './carWashSlots.model';
 
@@ -37,9 +35,27 @@ const createSlotsIntoDB = async (payload: TSlot) => {
     slots.push(slot);
   }
 
-  // Save slots to the database
-  const createdSlots = await CarWashSlots.insertMany(slots);
-  return createdSlots;
+  const result = await CarWashSlots.insertMany(slots);
+  return result;
 };
 
-export const carWashSlots = { createSlotsIntoDB };
+export const getAvailableSlotsFromDB = async (queryParams: TQuery) => {
+  const { serviceId, date } = queryParams;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const query: any = {
+    isBooked: 'available',
+  };
+
+  if (serviceId) {
+    query.service = serviceId;
+  }
+
+  if (date) {
+    query.date = date;
+  }
+
+  const result = await CarWashSlots.find(query).populate('service');
+  return result;
+};
+
+export const carWashSlots = { createSlotsIntoDB, getAvailableSlotsFromDB };
