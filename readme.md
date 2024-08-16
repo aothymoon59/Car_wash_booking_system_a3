@@ -1,5 +1,8 @@
 ## Car Wash Booking Management
 
+- Live server link: https://car-wash-booking-two.vercel.app/
+- Postman documentation: https://documenter.getpostman.com/view/29000250/2sA3s6E9oF
+
 ### Step 1
 
 - Create a .env file in the root directory of this project. And use this code on .env file
