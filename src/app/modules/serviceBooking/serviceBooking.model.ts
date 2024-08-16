@@ -8,12 +8,12 @@ const bookingSchema = new mongoose.Schema<TBooking>(
       ref: 'User',
       required: true,
     },
-    serviceId: {
+    service: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'CarService',
       required: true,
     },
-    slotId: {
+    slot: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'CarWashSlots',
       required: true,
