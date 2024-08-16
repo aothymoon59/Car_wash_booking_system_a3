@@ -17,7 +17,7 @@ const createBookingIntoDB = async (payload: TBooking) => {
   await slot.save();
 
   // Create the booking
-  const booking = (
+  const result = (
     await (
       await (
         await ServiceBooking.create(payload)
@@ -33,9 +33,27 @@ const createBookingIntoDB = async (payload: TBooking) => {
     path: 'customer',
     select: '_id name email phone address',
   });
-  return booking;
+  return result;
+};
+
+const getAllBookingsFromDB = async () => {
+  const result = await ServiceBooking.find()
+    .populate({
+      path: 'service',
+      select: '_id name description price duration isDeleted',
+    })
+    .populate({
+      path: 'slot',
+      select: '_id service date startTime endTime isBooked',
+    })
+    .populate({
+      path: 'customer',
+      select: '_id name email phone address',
+    });
+  return result;
 };
 
 export const BookingServiceServices = {
   createBookingIntoDB,
+  getAllBookingsFromDB,
 };
