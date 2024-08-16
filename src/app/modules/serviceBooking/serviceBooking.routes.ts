@@ -21,4 +21,10 @@ router.get(
   BookingServiceControllers.getAllBookings,
 );
 
+router.get(
+  '/my-bookings',
+  auth('user'),
+  BookingServiceControllers.getMyBookings,
+);
+
 export const ServiceBookingsRoutes = router;

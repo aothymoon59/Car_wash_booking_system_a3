@@ -19,7 +19,6 @@ const userSchema = new Schema<TUser>(
     phone: {
       type: String,
       required: true,
-      unique: true,
     },
     role: {
       type: String,
